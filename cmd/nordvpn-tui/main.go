@@ -16,12 +16,17 @@ var (
 	versionFlag = flag.Bool("version", false, "print version and exit")
 )
 
-const version = "0.1.0-dev"
+// Injected at build time via -ldflags.
+var (
+	version = "dev"
+	commit  = "none"
+	date    = "unknown"
+)
 
 func main() {
 	flag.Parse()
 	if *versionFlag {
-		fmt.Println("nordvpn-tui", version)
+		fmt.Printf("nordvpn-tui %s (%s, built %s)\n", version, commit, date)
 		return
 	}
 

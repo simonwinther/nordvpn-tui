@@ -1,10 +1,14 @@
-BINARY := nordvpn-tui
-PKG    := ./...
+BINARY  := nordvpn-tui
+PKG     := ./...
+VERSION := $(shell git describe --tags --always --dirty 2>/dev/null || echo dev)
+COMMIT  := $(shell git rev-parse --short HEAD 2>/dev/null || echo none)
+DATE    := $(shell date -u +%Y-%m-%dT%H:%M:%SZ)
+LDFLAGS := -X main.version=$(VERSION) -X main.commit=$(COMMIT) -X main.date=$(DATE)
 
-.PHONY: build run run-fake test lint fmt tidy clean
+.PHONY: build run run-fake test lint fmt tidy snapshot clean
 
 build:
-	go build -o bin/$(BINARY) ./cmd/nordvpn-tui
+	go build -ldflags "$(LDFLAGS)" -o bin/$(BINARY) ./cmd/nordvpn-tui
 
 run: build
 	./bin/$(BINARY)
@@ -24,5 +28,8 @@ fmt:
 tidy:
 	go mod tidy
 
+snapshot:
+	goreleaser release --snapshot --clean
+
 clean:
-	rm -rf bin
+	rm -rf bin dist

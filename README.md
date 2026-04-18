@@ -5,17 +5,65 @@ CLI and gives you the five things you actually do every day — see status, quic
 connect, disconnect, pick a country/city, toggle core settings — on one clean,
 focused screen.
 
+## Runtime dependency
+
+`nordvpn-tui` is a front-end for the official NordVPN client. It requires:
+
+- The `nordvpn` CLI on `$PATH` (provided by the NordVPN Linux package)
+- The `nordvpnd` daemon running (`systemctl start nordvpnd`)
+
+Install the NordVPN Linux client first: https://nordvpn.com/download/linux/
+
 ## Install
 
+### Arch Linux (AUR)
+
 ```
-go build -o bin/nordvpn-tui ./cmd/nordvpn-tui
+yay -S nordvpn-tui-bin
+```
+
+Or with any AUR helper, or manually:
+
+```
+git clone https://aur.archlinux.org/nordvpn-tui-bin.git
+cd nordvpn-tui-bin
+makepkg -si
+```
+
+### Debian / Ubuntu (.deb)
+
+Download the `.deb` from the [latest GitHub Release][releases] and install:
+
+```
+sudo dpkg -i nordvpn-tui_<version>_amd64.deb
+```
+
+### Tarball (any Linux)
+
+Download the tarball for your architecture from the [latest GitHub Release][releases],
+extract, and place the binary on your `$PATH`:
+
+```
+tar xf nordvpn-tui_<version>_linux_amd64.tar.gz
+sudo install -m755 nordvpn-tui /usr/local/bin/
+```
+
+### Build from source
+
+Requires Go 1.22+.
+
+```
+git clone https://github.com/simonwa01/nordvpn-tui.git
+cd nordvpn-tui
+make build
 ./bin/nordvpn-tui
 ```
 
-Requirements: Linux, Go 1.22+, the NordVPN CLI on `$PATH`, and the `nordvpnd`
-daemon running.
+[releases]: https://github.com/simonwa01/nordvpn-tui/releases
 
-Demo without the real daemon:
+## Demo mode
+
+Run without the real daemon to try the UI:
 
 ```
 ./bin/nordvpn-tui --fake
@@ -23,19 +71,41 @@ Demo without the real daemon:
 
 ## Keymap
 
-| Key           | Action                                          |
-| ------------- | ----------------------------------------------- |
-| `1` `2` `3`   | Home / Countries / Settings                     |
-| `enter`       | Primary action in the current view              |
-| `c`           | Quick connect                                   |
-| `d`           | Disconnect                                      |
-| `/`           | Search (inline, Countries / Servers)            |
-| `↑` `↓` / `k` `j` | Move cursor                                 |
-| `→` `l`       | Open cities for the focused country             |
-| `←` `h` / `esc`   | Back / clear search                         |
-| `?`           | Toggle help overlay                             |
-| `L`           | Open activity log                               |
-| `q` / `ctrl-c`| Quit                                            |
+| Key                   | Action                                      |
+| --------------------- | ------------------------------------------- |
+| `1` `2` `3`           | Home / Countries / Settings                 |
+| `enter`               | Primary action in the current view          |
+| `c`                   | Quick connect                               |
+| `d`                   | Disconnect                                  |
+| `/`                   | Search (inline, Countries / Servers)        |
+| `↑` `↓` / `k` `j`    | Move cursor                                 |
+| `→` `l`               | Open cities for the focused country         |
+| `←` `h` / `esc`       | Back / clear search                         |
+| `?`                   | Toggle help overlay                         |
+| `L`                   | Open activity log                           |
+| `q` / `ctrl-c`        | Quit                                        |
+
+## Releases
+
+Releases are created automatically by GitHub Actions when a semver tag is
+pushed:
+
+```
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+GoReleaser produces:
+- Linux `amd64` and `arm64` tarballs
+- A `.deb` package
+- SHA-256 checksums
+- AUR `nordvpn-tui-bin` update (if `AUR_SSH_PRIVATE_KEY` secret is set)
+
+To build a local snapshot without publishing:
+
+```
+make snapshot
+```
 
 ## Manual test matrix
 
@@ -71,4 +141,4 @@ Parsers live in one place. The UI never inspects raw CLI output.
 
 ## License
 
-MIT (TBD).
+MIT — see [LICENSE](LICENSE).
