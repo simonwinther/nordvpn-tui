@@ -1,8 +1,10 @@
+# nordvpn-tui
+
 <p align="center">
   <img src="assets/demo.gif" alt="nordvpn-tui demo" width="900" />
 </p>
 
-# nordvpn-tui
+<p align="center"><em>This video was recorded at release V0010.</em></p>
 
 A keyboard-first terminal UI for NordVPN on Linux. It wraps the official
 `nordvpn` CLI so you can check status, quick connect, disconnect, pick a
