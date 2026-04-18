@@ -47,6 +47,13 @@ tar xf nordvpn-tui_<version>_linux_amd64.tar.gz
 sudo install -m755 nordvpn-tui /usr/local/bin/
 ```
 
+If you want a shorter command, add an alias in your shell config, for example in
+`~/.zshrc`:
+
+```bash
+alias nui='nordvpn-tui'
+```
+
 ### Build from source
 
 Requires Go 1.22+.
