@@ -93,13 +93,7 @@ UI (Bubble Tea) <-> Store (pure reducers) <-> VPN service (exec wrapper)
                                                 `nordvpn` CLI
 ```
 
-- `internal/vpn/`: CLI wrapper, parsers, typed errors, fake client.
-- `internal/state/`: single `AppState` struct, no ad-hoc mutation.
-- `internal/app/`: Bubble Tea root model, messages, key dispatch, router.
-- `internal/theme/`: palette and named Lip Gloss styles.
-- `internal/views/`: per-view render functions, each pure.
-
-Parsers live in one place. The UI never inspects raw CLI output.
+The UI stays separate from raw CLI parsing and command execution.
 
 ## Repo analytics
 
