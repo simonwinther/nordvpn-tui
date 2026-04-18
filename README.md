@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/demo.gif" alt="nordvpn-tui demo" width="900" />
+</p>
+
 # nordvpn-tui
 
 A keyboard-first terminal UI for NordVPN on Linux. It wraps the official
