@@ -39,7 +39,7 @@ nfpms:
   - id: packages
     package_name: nordvpn-tui
     vendor: Simon Winther
-    homepage: https://github.com/simonwa01/nordvpn-tui
+    homepage: https://github.com/simonwinther/nordvpn-tui
     maintainer: Simon Winther <simonwa01@gmail.com>
     description: Keyboard-first terminal UI for NordVPN on Linux
     license: MIT
@@ -57,7 +57,7 @@ nfpms:
 # Requires AUR_SSH_PRIVATE_KEY secret; upload is skipped when the secret is absent.
 aurs:
   - name: nordvpn-tui-bin
-    homepage: https://github.com/simonwa01/nordvpn-tui
+    homepage: https://github.com/simonwinther/nordvpn-tui
     description: Keyboard-first terminal UI for NordVPN on Linux
     maintainers:
       - Simon Winther <simonwa01@gmail.com>
