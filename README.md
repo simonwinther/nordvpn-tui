@@ -139,6 +139,10 @@ UI (Bubble Tea)  ↔  Store (pure reducers)  ↔  VPN service (exec wrapper)
 
 Parsers live in one place. The UI never inspects raw CLI output.
 
+## Repo analytics
+
+![Alt](https://repobeats.axiom.co/api/embed/dd83797db25f0a94ec0fc87a174cd6bc2001a215.svg "Repobeats analytics image")
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
